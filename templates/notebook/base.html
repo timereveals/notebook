@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Sjia's notebook</title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta name="description" content="some useful notes" />
+    <meta name="keywords" content="python,c++" />
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'notebook/highlight/styles/default.css' %}" />
+    <script src="{% static 'notebook/highlight/highlight.pack.js' %}"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
+
+    <script src="{% static 'notebook/js/jquery.min.js' %}"></script>
+    <script src="{% static 'notebook/js/jquery.poptrox.min.js' %}"></script>
+    <script src="{% static 'notebook/js/skel.min.js' %}"></script>
+    <script src="{% static 'notebook/js/init.js' %}"></script>
+    <script src="{% static 'notebook/js/jquery.tagcloud.js' %}"></script>
+    <script src="{% static 'notebook/js/my.js' %}"></script>
+
+</head>
+
+<body id="top">
+
+    <!-- Header -->
+    <header id="header">
+        <div id="title">
+            <center>
+            <h1 style="font-size:32px;color:lightgrey;font-style:italic;">Sjia's Notebook</h1>
+            </center>
+        </div>
+        <div id="category">
+            <center>
+            {% if categories %} {% for key,value in categories.items %}
+                <a rel="{{value}}" href="?category={{key}}">{{key|capfirst}}</a>
+            {% endfor %} {% endif %}
+            </center>
+        </div>
+        <div>
+            <center>
+                <input type="text" name="search" id="search" placeholder="Search" style="width:150px;text-align=center;" />
+            </center>
+        </div>
+    </header>
+
+    <!-- Main -->
+    <div id="main">
+        {% block content %} {% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <center>
+            <ul class="icons">
+                <li><a href="https://github.com/timereveals/" class="icon fa-github"><span class="label">Github</span></a></li>
+                <li><a href="mailto:timereveals@outlook.com" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+            </ul>
+            <ul class="copyright">
+                <li>&copy 2017 by Sjia. All Rights Reserved.</li>
+            </ul>
+        </center>
+    </footer>
+</body>
+
+
+</html>
