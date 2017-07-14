@@ -93,6 +93,7 @@ $(document).ready(function(){
             toFadeOut($(this));
         }
     });
+    init_hide();
 });
 function hide_details(section){
     var s_children=section.children("*");
