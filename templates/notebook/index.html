@@ -12,21 +12,27 @@
     <h1>{{note.title|capfirst}}</h1>
     <h5>{{note.time_update}} in {% for c in note.category.all%} <a href="?category={{ c.name|capfirst }}">{{ c.name|capfirst }}.</a>{%endfor%}</h5>
     {{note.content|custom_markdown}}
+    <p>...</p>
+    <a class="fade" fade_in_or_out="in">Details ></a>
 </section>
 {% endfor %}
+
+<script>
+ init_hide();
+</script>
 
 <section>
 <center>
 <span class="step-links">
     {% if notes.has_previous %}
-    <a onclick="myfunction('','',0,{{notes.previous_page_number}})">Previous </a>
+    <a onclick="myfunction('','',0,{{notes.previous_page_number}})" >Previous </a>
     {% endif %}
     <span class="current">
         {{ notes.number}}/{{notes.paginator.num_pages}}
     </span>
     {% if notes.has_next%}
     <!-- <a href="?page={{notes.next_page_number}}">Next</a> -->
-    <a onclick="myfunction('','',0,{{notes.next_page_number}})"> Next</a>
+    <a onclick="myfunction('','',0,{{notes.next_page_number}})" > Next</a>
     {% endif%}
 </span>
 </center>

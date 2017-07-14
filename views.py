@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
-from django.http import JsonResponse
+from django.http import JsonResponse,HttpResponse
 from django.views.generic.base import View, TemplateView
 from django.core.paginator import Paginator
 from .models import *
@@ -21,7 +21,7 @@ def filtByRequestParam(query_set,request):
         notes=paginator.page(page)
     except:
         notes=paginator.page(1)
-    return notes 
+    return notes
 
 class HomeView(TemplateView):
     template_name='notebook/index.html'
@@ -42,7 +42,9 @@ class HomeView(TemplateView):
 class CRUD(View):
     def get(self,request,*args,**kwargs):
         # if request.is_ajax():
-        note_set=Note.objects.order_by('-time_update')
+        if not request.is_ajax():
+            return HttpResponse("not ajax")
+        note_set=Note.objects.order_by('-time_create')
         notes=filtByRequestParam(note_set,self.request)
 
         json={}
@@ -61,8 +63,9 @@ class CRUD(View):
         return JsonResponse(json)
 
     def post(self,request,*args,**kwargs):
-
-        pass
+        for key,value in self.request.POST.items():
+            print(key+ ' : '+ value)
+        return HttpResponse('got')
 
     def patch(self,request,*args,**kwargs):
         pass
